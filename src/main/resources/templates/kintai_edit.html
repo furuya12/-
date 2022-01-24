@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+</style>
+</head>
+<body style="background-color: #EEFFFF">
+	<h1 th:text="'勤怠情報編集画面'"></h1>
+	<table border="5" style="background-color: #FFFFFF">
+		<caption>ログインユーザー</caption>
+		<tr>
+			<th>社員番号</th>
+			<th>チーム名</th>
+			<th>氏名</th>
+			<th>権限名</th>
+		</tr>
+		<tr>
+			<td th:text="${loginUser.employee_number}"></td>
+			<td th:text="${loginUser.team_name}"></td>
+			<td th:text="${loginUser.employee_name}"></td>
+			<td th:text="${loginUser.authority_name}"></td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<br>
+	<form th:action="@{/kintai_correspondence}" method="post" name="edit"
+		th:object="${kintaiEdit}">
+		<table border="0" width="100%">
+			<tr>
+				<td>
+					<table border="5" align="center" style="background-color: #EEFFEE">
+						<caption>表示対象ユーザ</caption>
+						<tr>
+							<th>社員番号</th>
+							<th>チーム名</th>
+							<th>氏名</th>
+							<th>権限名</th>
+						</tr>
+						<tr>
+							<td th:text="${loginUser.employee_number}"></td>
+							<td th:text="${loginUser.team_name}"></td>
+							<td th:text="${loginUser.employee_name}"></td>
+							<td th:text="${loginUser.authority_name}"></td>
+						</tr>
+					</table>
+			</td>
+			</tr>
+			<tr>
+				<td>
+					<table border="2" width="80%" align="center"
+						style="background-color: #EEFFEE">
+						<tr>
+							<th width="80%" style="font-size: 25px;" th:text="*{yearMonth}"><b></b></th>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table border="5" bordercolor="black" width="80%" align="center"
+						style="background-color: #EEFFEE">
+						<tr>
+							<th width="5%">日付</th>
+							<th width="5%">曜日</th>
+							<th width="20%">出勤時間</th>
+							<th width="20%">退勤時間</th>
+							<th width="50%">備考</th>
+						</tr>
+						<tr th:each="target : *{kintaiList}">
+							<th:block th:with="map=${target}">
+								<td class="date" th:text="${map.day}"></td>
+								<td class="week" th:text="${map.week}"
+									th:style="${map.week_color}"></td>
+								<td align="middle"><input type="text"></td>
+								<td align="middle"><input type="text"></td>
+								<th style="font-weight: initial;"><input type="text"
+									style="width: -webkit-fill-available;" value=""></th>
+							</th:block>
+						</tr>
+					</table>
+					<table width="80%" align="center">
+						<tr>
+							<td align="left"><button type="submit" name="prevMounth"
+									value="1">前月</button></td>
+							<td align="right"><button type="submit" name="nextMounth"
+									value="1">翌月</button></td>
+						</tr>
+					</table>
+					<table width="80%" align="center">
+						<tr>
+							<td align="left"><input type="submit" name="update"
+								value="解除" /></td>
+							<td align="right"><input type="submit" name="update"
+								value="更新" /></td>
+						</tr>
+					</table>
+
+			</td>
+			</tr>
+		</table>
+	</form>
+	<form th:action="@{/login}" method="get">
+		<button style="position: absolute; top: 200px; left: 10px;">ログアウト</button>
+	</form>
+</body>
+</html>

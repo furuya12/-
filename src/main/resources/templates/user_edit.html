@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ユーザ変更画面</title>
+</head>
+<body style="background-color:#EEFFFF">
+	<h1 th:text="'ユーザ変更画面'"></h1>
+	<table border="5" style="background-color:#FFFFFF">
+		<caption>ログインユーザー</caption>
+		<tr>
+			<th>社員番号</th>
+			<th>チーム名</th>
+			<th>氏名</th>
+			<th>権限名</th>
+		</tr>
+		<tr>
+			<td th:text="${loginUser.employee_number}"></td>
+			<td th:text="${loginUser.team_name}"></td>
+			<td th:text="${loginUser.employee_name}"></td>
+			<td th:text="${loginUser.authority_name}"></td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<br>
+
+	<label>社員番号</label>
+	<input type="text">
+	<br>
+
+	<button>登録</button>
+	<button>編集</button>
+	<button>削除</button>
+	<br>
+	<label>氏名</label>
+	<input type="text">
+	<br>
+	<label>所属チーム</label>
+	<input type="text">
+	<br>
+	<label>権限</label>
+	<input type="text">
+	<br>
+	<button>確定</button>
+	<br>
+	<button>キャンセル</button>
+
+	<br>
+	<br>
+	<form th:action="@{/backMenu}" method="post">
+		<button>戻る</button>
+	</form>
+	<form th:action="@{/login}" method="get">
+		<button style="position: absolute; top: 200px; left: 10px;">ログアウト</button>
+	</form>
+</body>
+</html>
